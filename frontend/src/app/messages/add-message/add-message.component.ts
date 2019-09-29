@@ -1,4 +1,7 @@
+import { MessagesApiService } from './../messages-api.service';
 import { Component, OnInit } from '@angular/core';
+import { Message } from '../message';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-message',
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddMessageComponent implements OnInit {
 
-  constructor() { }
+  message: Message;
+  constructor(
+    private router: Router,
+    private messagesApiService: MessagesApiService) {
+      this.message = new Message();
+     }
 
   ngOnInit() {
+  }
+
+  onSubmit() {
+    this.messagesApiService.save(this.message).subscribe(result => this.gotoMessages());
+  }
+
+  gotoMessages() {
+    this.router.navigate(['/messages']);
   }
 
 }
