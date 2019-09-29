@@ -1,0 +1,10 @@
+<div class="col-sm-12">
+  <div class="panel panel-default"
+    *ngFor="let message of messages">
+    <div class="panel-heading">
+      <h3 class="panel-title">{{message.author}}</h3>
+      <div class="pull-right">{{message.date}}</div>
+    </div>
+    <div class="panel-body">{{message.text}}</div>
+  </div>
+</div>
